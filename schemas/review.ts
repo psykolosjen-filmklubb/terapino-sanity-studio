@@ -1,0 +1,46 @@
+export default {
+  name: 'review',
+  title: 'Review',
+  type: 'document',
+  fields: [
+    {
+      name: 'review_title',
+      title: 'Overskriften til anmeldelsen',
+      type: 'string',
+      description: 'Denne kan også bare være film-tittelen',
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'review_title',
+        maxLength: 96,
+        slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 96),
+      },
+    },
+    {
+      name: 'movie_title',
+      title: 'Filmtittel',
+      type: 'string',
+    },
+    {
+      name: 'authors',
+      title: 'Forfatter(e)',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: {type: 'author'},
+        },
+      ],
+    },
+    {
+      name: 'review',
+      title: 'Anmeldelse',
+      type: 'array',
+      of: [{type: 'block'}],
+      description: 'Skriv selve filmanmeldelsen her',
+    },
+  ],
+}
