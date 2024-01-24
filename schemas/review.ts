@@ -25,6 +25,14 @@ export default {
       type: 'string',
     },
     {
+      name: 'thumbnail',
+      title: 'Thumbnail',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'authors',
       title: 'Forfatter(e)',
       type: 'array',
@@ -41,6 +49,12 @@ export default {
       type: 'array',
       of: [{type: 'block'}],
       description: 'Skriv selve filmanmeldelsen her',
+    },
+    {
+      name: 'excerpt',
+      title: 'Utdrag',
+      type: 'string',
+      description: 'Dette vises på fremsiden sammen med thumbnail',
     },
   ],
 }
