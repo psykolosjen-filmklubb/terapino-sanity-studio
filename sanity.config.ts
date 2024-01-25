@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'terapino',
 
-  projectId: '1pfu395i',
+  projectId: '4s9wdr84',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
