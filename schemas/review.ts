@@ -1,6 +1,6 @@
 export default {
   name: 'review',
-  title: 'Review',
+  title: 'Anmeldelser',
   type: 'document',
   fields: [
     {
@@ -23,6 +23,13 @@ export default {
       name: 'movie_title',
       title: 'Filmtittel',
       type: 'string',
+    },
+    {
+      name: 'tmdb_id',
+      title: 'TMDB ID',
+      type: 'number',
+      description:
+        'ID-en til filmen på The Movie Database. Brukes til å hente bilde og info om filmen',
     },
     {
       name: 'thumbnail',
