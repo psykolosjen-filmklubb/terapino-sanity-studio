@@ -1,6 +1,6 @@
 export default {
   name: 'semester',
-  title: 'Semestre',
+  title: 'Arkiv',
   type: 'document',
   fields: [
     {
