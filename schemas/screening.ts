@@ -43,4 +43,16 @@ export default {
       },
     },
   ],
+  orderings: [
+    {
+      title: 'Visningsdato, synkende',
+      name: 'date_desc',
+      by: [{field: 'date', direction: 'desc'}],
+    },
+    {
+      title: 'Visningsdato, stigende',
+      name: 'date_asc',
+      by: [{field: 'date', direction: 'asc'}],
+    },
+  ],
 }
