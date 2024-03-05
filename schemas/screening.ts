@@ -2,7 +2,7 @@ import {Rule, SanityDocument} from 'sanity'
 
 export default {
   name: 'screening',
-  title: 'Visning',
+  title: 'Visninger',
   type: 'document',
   fields: [
     {
