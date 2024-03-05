@@ -2,5 +2,6 @@ import author from './author'
 import image_assets from './image_assets'
 import review from './review'
 import screening from './screening'
+import semester from './semester'
 
-export const schemaTypes = [author, review, image_assets, screening]
+export const schemaTypes = [author, review, image_assets, screening, semester]
