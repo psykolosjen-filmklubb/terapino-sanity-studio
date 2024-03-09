@@ -22,6 +22,13 @@ export default {
       type: 'string',
     },
     {
+      name: 'tmdb_id',
+      title: 'TMDB ID',
+      type: 'number',
+      description:
+        'ID-en til filmen på The Movie Database. Brukes til å hente bilde og info om filmen',
+    },
+    {
       name: 'date',
       title: 'Visningsdato',
       type: 'date',
