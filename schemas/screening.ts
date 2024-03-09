@@ -42,6 +42,17 @@ export default {
         hotspot: true,
       },
     },
+    {
+      name: 'poster_artists',
+      title: 'Poster-kunstner(e)',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: {type: 'author'},
+        },
+      ],
+    },
   ],
   orderings: [
     {
