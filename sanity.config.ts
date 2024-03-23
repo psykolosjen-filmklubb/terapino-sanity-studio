@@ -6,7 +6,7 @@ import {colorInput} from '@sanity/color-input'
 
 export default defineConfig({
   name: 'default',
-  title: 'terapino',
+  title: 'Terapino Studio',
 
   projectId: '4s9wdr84',
   dataset: 'production',
