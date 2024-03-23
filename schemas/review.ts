@@ -1,4 +1,6 @@
-export default {
+import {defineType} from 'sanity'
+
+export default defineType({
   name: 'review',
   title: 'Anmeldelser',
   type: 'document',
@@ -16,7 +18,7 @@ export default {
       options: {
         source: 'review_title',
         maxLength: 96,
-        slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 96),
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 96),
       },
     },
     {
@@ -64,4 +66,4 @@ export default {
       description: 'Dette vises på fremsiden sammen med thumbnail',
     },
   ],
-}
+})

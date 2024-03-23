@@ -1,4 +1,6 @@
-export default {
+import {defineType} from 'sanity'
+
+export default defineType({
   name: 'image_assets',
   title: 'Image Assets',
   type: 'document',
@@ -17,4 +19,4 @@ export default {
       },
     },
   ],
-}
+})
