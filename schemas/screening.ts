@@ -60,6 +60,30 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'promo_material',
+      title: 'Promomateriale',
+      type: 'array',
+      of: [
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternativ tekst',
+              description: 'Beskriv bildet for skjermlesere',
+              validation: (rule) => rule.required(),
+            }),
+          ],
+        },
+      ],
+      options: {
+        layout: 'grid',
+      },
+    }),
   ],
   orderings: [
     {
