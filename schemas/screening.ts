@@ -68,7 +68,31 @@ export default defineType({
         {
           name: 'image',
           type: 'image',
-          title: 'Image',
+          title: 'Bilde',
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternativ tekst',
+              description: 'Beskriv bildet for skjermlesere',
+              validation: (rule) => rule.required(),
+            }),
+          ],
+        },
+      ],
+      options: {
+        layout: 'grid',
+      },
+    }),
+    defineField({
+      name: 'event_media',
+      title: 'Bilder fra visningen',
+      type: 'array',
+      of: [
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Bilde',
           fields: [
             defineField({
               name: 'alt',
