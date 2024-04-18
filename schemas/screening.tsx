@@ -25,8 +25,12 @@ export default defineType({
       name: 'tmdb_id',
       title: 'TMDB ID',
       type: 'number',
-      description:
-        'ID-en til filmen på The Movie Database. Brukes til å hente bilde og info om filmen',
+      description: (
+        <span>
+          ID-en til filmen på <a href="https://www.themoviedb.org/">The Movie Database</a>. Brukes
+          til å hente bilde og info om filmen.
+        </span>
+      ),
     }),
     defineField({
       name: 'date',
@@ -37,6 +41,8 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description:
+        'Dette blir URL-en til visningen, og må derfor være unik. Du kan trykke på "Generate" for å lage en basert på dato og tittel.',
       options: {
         source: (doc) => doc.date + '-' + doc.movie_title,
       },
