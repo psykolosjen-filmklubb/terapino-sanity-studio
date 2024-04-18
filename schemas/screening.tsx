@@ -85,6 +85,28 @@ export default defineType({
             }),
           ],
         },
+        {
+          name: 'video',
+          type: 'object',
+          title: 'Video',
+          fields: [
+            defineField({
+              name: 'youtube_id',
+              type: 'string',
+              title: 'YouTube ID',
+              description: (
+                <span>
+                  Legg inn ID-en til YouTube-videoen. F.eks. i{' '}
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                    youtube.com/watch?v=dQw4w9WgXcQ
+                  </a>
+                  , så er &quot;dQw4w9WgXcQ&quot; ID-en.
+                </span>
+              ),
+              validation: (rule) => rule.required(),
+            }),
+          ],
+        },
       ],
       options: {
         layout: 'grid',
