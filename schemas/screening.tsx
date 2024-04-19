@@ -62,7 +62,7 @@ export default defineType({
       of: [
         {
           type: 'reference',
-          to: {type: 'author'},
+          to: {type: 'member'},
         },
       ],
     }),

@@ -1,22 +1,28 @@
 import {defineType} from 'sanity'
 
 export default defineType({
-  name: 'author',
-  title: 'Forfattere',
+  name: 'member',
+  title: 'Medlemmer',
   type: 'document',
   fields: [
     {
       name: 'name',
-      title: 'Name',
+      title: 'Navn',
       type: 'string',
     },
     {
       name: 'image',
-      title: 'Image',
+      title: 'Bilde',
       type: 'image',
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'active',
+      title: 'Aktiv',
+      type: 'boolean',
+      description: 'Er personen i styret nå?',
     },
   ],
 })
