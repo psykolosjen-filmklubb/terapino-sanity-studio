@@ -15,6 +15,7 @@ export default defineType({
       name: 'header_image',
       title: 'Hoved-bilde',
       type: 'object',
+      description: 'Bilde som vises helt øverst på siden',
       fields: [
         {
           name: 'image',
@@ -33,6 +34,13 @@ export default defineType({
           validation: (rule) => rule.required(),
         },
       ],
+    },
+    {
+      name: 'main_text',
+      title: 'Tekst',
+      type: 'array',
+      of: [{type: 'block'}],
+      description: 'Hovedteksten om oss',
     },
   ],
 })
