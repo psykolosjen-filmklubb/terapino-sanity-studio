@@ -6,6 +6,7 @@ import review from './review'
 import role from './role'
 import screening from './screening'
 import semester from './semester'
+import settings from './settings'
 import verv from './verv'
 
 export const schemaTypes = [
@@ -18,4 +19,5 @@ export const schemaTypes = [
   role,
   verv,
   membership,
+  settings,
 ]

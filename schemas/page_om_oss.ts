@@ -9,7 +9,7 @@ export default defineType({
       name: 'title',
       title: 'Side-innhold til "Om oss"',
       type: 'string',
-      description: 'Denne kan også bare være film-tittelen',
+      description: 'Den som blir sist redigert er den som blir brukt på nettsiden.',
     },
     {
       name: 'header_image',
