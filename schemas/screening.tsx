@@ -38,6 +38,11 @@ export default defineType({
       type: 'date',
     }),
     defineField({
+      name: 'tickets_url',
+      title: 'Billettlenke',
+      type: 'url',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
