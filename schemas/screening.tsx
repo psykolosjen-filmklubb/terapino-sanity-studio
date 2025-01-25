@@ -6,20 +6,35 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'movies',
+      title: 'Film(er)',
+      description: 'Legg til filmer som skal vises',
+      type: 'array',
+      of: [{type: 'screening_movie'}],
+    }),
+    defineField({
       name: 'movie_title',
       title: 'Filmtittel',
       type: 'string',
+      deprecated: {
+        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
+      },
     }),
     defineField({
       name: 'release_year',
       title: 'Utgivelsesår',
       type: 'number',
-      validation: (Rule) => Rule.required().integer().positive(),
+      deprecated: {
+        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
+      },
     }),
     defineField({
       name: 'director',
       title: 'Regissør',
       type: 'string',
+      deprecated: {
+        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
+      },
     }),
     defineField({
       name: 'tmdb_id',
@@ -31,6 +46,9 @@ export default defineType({
           til å hente bilde og info om filmen.
         </span>
       ),
+      deprecated: {
+        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
+      },
     }),
     defineField({
       name: 'date',
@@ -51,6 +69,7 @@ export default defineType({
       options: {
         source: (doc) => doc.date + '-' + doc.movie_title,
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'poster',

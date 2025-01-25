@@ -16,12 +16,14 @@
   ],
   "dependencies": {
     "@sanity/color-input": "^3.1.1",
+    "@sanity/icons": "^3.5.7",
     "@sanity/vision": "^3.71.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-is": "^18.2.0",
     "sanity": "^3.71.2",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.14",
+    "swr": "^2.3.0"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^3.0.1",
