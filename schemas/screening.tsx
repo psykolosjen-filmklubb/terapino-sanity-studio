@@ -173,4 +173,28 @@ export default defineType({
       by: [{field: 'date', direction: 'asc'}],
     },
   ],
+  preview: {
+    select: {
+      title0: 'movies.0.title',
+      title1: 'movies.1.title',
+      title2: 'movies.2.title',
+      date: 'date',
+      poster: 'poster',
+    },
+    prepare({title0, title1, title2, date, poster}) {
+      const eventDate = new Date(date)
+      const isCurrentYear = eventDate.getFullYear() === new Date().getFullYear()
+      const dateString = new Intl.DateTimeFormat('nb-NO', {
+        day: 'numeric',
+        month: 'long',
+        ...(isCurrentYear ? {} : {year: 'numeric'}),
+      }).format(eventDate)
+
+      return {
+        title: [title0, title1, title2].filter(Boolean).join(' & '),
+        subtitle: dateString,
+        media: poster,
+      }
+    },
+  },
 })
