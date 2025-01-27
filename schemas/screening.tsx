@@ -13,44 +13,6 @@ export default defineType({
       of: [{type: 'screening_movie'}],
     }),
     defineField({
-      name: 'movie_title',
-      title: 'Filmtittel',
-      type: 'string',
-      deprecated: {
-        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
-      },
-    }),
-    defineField({
-      name: 'release_year',
-      title: 'Utgivelsesår',
-      type: 'number',
-      deprecated: {
-        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
-      },
-    }),
-    defineField({
-      name: 'director',
-      title: 'Regissør',
-      type: 'string',
-      deprecated: {
-        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
-      },
-    }),
-    defineField({
-      name: 'tmdb_id',
-      title: 'TMDB ID',
-      type: 'number',
-      description: (
-        <span>
-          ID-en til filmen på <a href="https://www.themoviedb.org/">The Movie Database</a>. Brukes
-          til å hente bilde og info om filmen.
-        </span>
-      ),
-      deprecated: {
-        reason: 'Dette feltet forsvinner snart. Legg til info om filmen i "Film(er)"-objektet. ',
-      },
-    }),
-    defineField({
       name: 'date',
       title: 'Visningsdato',
       type: 'date',
