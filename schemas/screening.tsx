@@ -29,7 +29,15 @@ export default defineType({
       description:
         'Dette blir URL-en til visningen, og må derfor være unik. Du kan trykke på "Generate" for å lage en basert på dato og tittel.',
       options: {
-        source: (doc) => doc.date + '-' + doc.movie_title,
+        source: (doc) => {
+          const date = typeof doc.date === 'string' ? doc.date : ''
+          const titles = Array.isArray(doc.movies)
+            ? doc.movies
+                .map((movie) => (typeof movie.title === 'string' ? movie.title : ''))
+                .join('-og-')
+            : ''
+          return date + '-' + titles
+        },
       },
       validation: (rule) => rule.required(),
     }),
