@@ -10,16 +10,25 @@ export default defineType({
       type: 'string',
       name: 'name',
       title: 'Tittel',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       type: 'date',
       name: 'date',
       title: 'Dato',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'end_date',
+      title: 'Sluttdato',
+      type: 'date',
+      description: 'Hvis eventet var over en periode, kan du legge til sluttdato',
     }),
     defineField({
       type: 'event_media',
       name: 'event_media',
       title: 'Bilder og videoer',
+      validation: (rule) => rule.required(),
     }),
   ],
   orderings: [
@@ -38,14 +47,17 @@ export default defineType({
     select: {
       media: 'event_media',
       date: 'date',
+      endDate: 'end_date',
       name: 'name',
     },
-    prepare({media, date, name}) {
+    prepare({media, date, name, endDate}) {
       const image = media?.find((m: {_type: string}) => m._type === 'image')
 
       return {
         title: name,
-        subtitle: formatPreviewDate(date),
+        subtitle: endDate
+          ? formatPreviewDate(date) + ' - ' + formatPreviewDate(endDate)
+          : formatPreviewDate(date),
         media: image,
       }
     },
