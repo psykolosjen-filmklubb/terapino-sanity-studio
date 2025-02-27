@@ -1,3 +1,5 @@
+import event from './event'
+import event_media from './event_media'
 import image_assets from './image_assets'
 import member from './member'
 import membership from './membership'
@@ -22,4 +24,6 @@ export const schemaTypes = [
   membership,
   settings,
   screening_movie,
+  event,
+  event_media,
 ]
