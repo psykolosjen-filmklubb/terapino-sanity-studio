@@ -17,6 +17,7 @@ export default defineType({
       name: 'date',
       title: 'Visningsdato',
       type: 'date',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'tickets_url',
