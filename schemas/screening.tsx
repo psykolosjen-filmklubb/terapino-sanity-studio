@@ -12,6 +12,7 @@ export default defineType({
       description: 'Legg til filmer som skal vises',
       type: 'array',
       of: [defineArrayMember({type: 'screening_movie'})],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'date',
