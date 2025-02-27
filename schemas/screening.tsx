@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {formatPreviewDate} from '../utils/formatPreviewDate'
 
 export default defineType({
   name: 'screening',
@@ -152,22 +153,9 @@ export default defineType({
       poster: 'poster',
     },
     prepare({title0, title1, title2, date, poster}) {
-      let dateString = 'Ikke satt dato'
-
-      if (date) {
-        const eventDate = new Date(date)
-        const isCurrentYear = eventDate.getFullYear() === new Date().getFullYear()
-        const dateFormatter = new Intl.DateTimeFormat('nb-NO', {
-          day: 'numeric',
-          month: 'long',
-          ...(isCurrentYear ? {} : {year: 'numeric'}),
-        })
-        dateString = dateFormatter.format(eventDate)
-      }
-
       return {
         title: [title0, title1, title2].filter(Boolean).join(' & '),
-        subtitle: dateString,
+        subtitle: formatPreviewDate(date),
         media: poster,
       }
     },
