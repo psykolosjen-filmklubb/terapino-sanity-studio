@@ -1,22 +1,22 @@
-import {defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'membership',
   type: 'object',
   fields: [
-    {
+    defineField({
       name: 'from_date',
       title: 'Fra dato',
       type: 'date',
       description: 'Datoen personen ble medlem.',
       validation: (rule) => rule.required(),
-    },
-    {
+    }),
+    defineField({
       name: 'to_date',
       title: 'Til dato',
       type: 'date',
       description: 'La feltet være tomt hvis personen fortsatt er med',
-    },
+    }),
   ],
   preview: {
     select: {

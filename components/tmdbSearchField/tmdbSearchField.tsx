@@ -5,13 +5,7 @@ import {ObjectInputProps, set} from 'sanity'
 import {SearchIcon} from '@sanity/icons'
 import {fetchMovieDirectors, TmdbCrewMember} from './fetchMovieDirectors'
 
-interface fieldProps {
-  _key: string
-  title: string
-  release_year: number
-}
-
-export const TmdbSearchField = (props: ObjectInputProps<fieldProps>) => {
+export const TmdbSearchField = (props: ObjectInputProps) => {
   const [inputValue, setInputValue] = useState<string>('')
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(null)

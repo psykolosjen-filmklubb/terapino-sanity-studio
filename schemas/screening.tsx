@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'screening',
@@ -10,7 +10,7 @@ export default defineType({
       title: 'Film(er)',
       description: 'Legg til filmer som skal vises',
       type: 'array',
-      of: [{type: 'screening_movie'}],
+      of: [defineArrayMember({type: 'screening_movie'})],
     }),
     defineField({
       name: 'date',
@@ -54,10 +54,10 @@ export default defineType({
       title: 'Poster-kunstner(e)',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           type: 'reference',
           to: {type: 'member'},
-        },
+        }),
       ],
     }),
     defineField({
@@ -65,7 +65,7 @@ export default defineType({
       title: 'Promomateriale',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           name: 'image',
           type: 'image',
           title: 'Bilde',
@@ -78,8 +78,8 @@ export default defineType({
               validation: (rule) => rule.required(),
             }),
           ],
-        },
-        {
+        }),
+        defineArrayMember({
           name: 'video',
           type: 'object',
           title: 'Video',
@@ -100,7 +100,7 @@ export default defineType({
               validation: (rule) => rule.required(),
             }),
           ],
-        },
+        }),
       ],
       options: {
         layout: 'grid',
@@ -111,7 +111,7 @@ export default defineType({
       title: 'Bilder fra visningen',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           name: 'image',
           type: 'image',
           title: 'Bilde',
@@ -124,7 +124,7 @@ export default defineType({
               validation: (rule) => rule.required(),
             }),
           ],
-        },
+        }),
       ],
       options: {
         layout: 'grid',
