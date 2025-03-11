@@ -10,6 +10,7 @@ export default defineType({
       title: 'Overskriften til anmeldelsen',
       type: 'string',
       description: 'Denne kan også bare være film-tittelen',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -20,6 +21,7 @@ export default defineType({
         maxLength: 96,
         slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 96),
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'movie_title',
@@ -58,6 +60,7 @@ export default defineType({
       type: 'array',
       of: [defineArrayMember({type: 'block'})],
       description: 'Skriv selve filmanmeldelsen her',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'excerpt',
