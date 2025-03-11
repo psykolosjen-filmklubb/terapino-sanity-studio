@@ -1,9 +1,9 @@
 import {defineField, defineType} from 'sanity'
-import {TmdbSearchField} from '../components/tmdbSearchField/tmdbSearchField'
-import {TitleInput} from '../components/tmdbSearchField/titleInput'
-import {ReleaseYearInput} from '../components/tmdbSearchField/releaseYearInput'
-import {DirectorsInput} from '../components/tmdbSearchField/directorInput'
-import {TmdbIdInput} from '../components/tmdbSearchField/tmdbIdInput'
+import {TmdbSearchField} from '../../components/tmdbSearchField/tmdbSearchField'
+import {TitleInput} from '../../components/tmdbSearchField/titleInput'
+import {ReleaseYearInput} from '../../components/tmdbSearchField/releaseYearInput'
+import {DirectorsInput} from '../../components/tmdbSearchField/directorInput'
+import {TmdbIdInput} from '../../components/tmdbSearchField/tmdbIdInput'
 
 export default defineType({
   name: 'screening_movie',

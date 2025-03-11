@@ -7,7 +7,8 @@ export default defineType({
     defineField({
       name: 'role',
       title: 'Rolle',
-      description: 'Hvis rollen ikke finnes, må den legges til under "Rolle" i menyen til venstre.',
+      description:
+        'Hvis rollen ikke finnes, må den legges til under "Roller" i menyen til venstre.',
       validation: (rule) => rule.required(),
       type: 'reference',
       to: {type: 'role'},

@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {formatPreviewDate} from '../utils/formatPreviewDate'
+import {formatPreviewDate} from '../../utils/formatPreviewDate'
 
 export default defineType({
   name: 'event',
