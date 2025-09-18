@@ -2,7 +2,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
   name: "semester",
-  title: "Arkiv",
+  title: "Semesterprogram",
   type: "document",
   fields: [
     defineField({
