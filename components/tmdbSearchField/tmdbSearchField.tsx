@@ -1,33 +1,45 @@
-import React, {useState} from 'react'
-import {Movie, useTmdbSearch} from './useTmdbSearch'
-import {Box, TextInput, Spinner, Text, Stack, Flex, Grid, Button, Card} from '@sanity/ui'
-import {ObjectInputProps, set} from 'sanity'
-import {SearchIcon} from '@sanity/icons'
-import {fetchMovieDirectors, TmdbCrewMember} from './fetchMovieDirectors'
+import React, { useState } from "react";
+import { Movie, useTmdbSearch } from "./useTmdbSearch";
+import {
+  Box,
+  TextInput,
+  Spinner,
+  Text,
+  Stack,
+  Flex,
+  Grid,
+  Button,
+  Card,
+} from "@sanity/ui";
+import { ObjectInputProps, set } from "sanity";
+import { SearchIcon } from "@sanity/icons";
+import { fetchMovieDirectors, TmdbCrewMember } from "./fetchMovieDirectors";
 
 export const TmdbSearchField = (props: ObjectInputProps) => {
-  const [inputValue, setInputValue] = useState<string>('')
-  const [searchTerm, setSearchTerm] = useState<string>('')
-  const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(null)
+  const [inputValue, setInputValue] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(
+    null,
+  );
 
-  const {movies, error, isLoading} = useTmdbSearch(searchTerm)
+  const { movies, error, isLoading } = useTmdbSearch(searchTerm);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value)
+    setInputValue(e.target.value);
 
     if (searchTimeout) {
-      clearTimeout(searchTimeout)
+      clearTimeout(searchTimeout);
     }
 
     setSearchTimeout(
       setTimeout(() => {
-        setSearchTerm(e.target.value)
+        setSearchTerm(e.target.value);
       }, 300),
-    )
-  }
+    );
+  };
 
   const handleChooseMovie = async (movie: Movie) => {
-    const directors = await fetchMovieDirectors(movie.id)
+    const directors = await fetchMovieDirectors(movie.id);
     props.onChange(
       set({
         _key: props.value?._key,
@@ -36,20 +48,23 @@ export const TmdbSearchField = (props: ObjectInputProps) => {
         release_year: Number(movie.release_date.substring(0, 4)),
         directors: getDirectorsString(directors),
       }),
-    )
-    setSearchTerm('')
-  }
+    );
+    setSearchTerm("");
+  };
 
   return (
-    <Box style={{position: 'relative', overflow: 'visible'}}>
+    <Box style={{ position: "relative", overflow: "visible" }}>
       <TextInput
         value={inputValue}
         onChange={handleSearchChange}
         placeholder="Søk etter film..."
-        style={{position: 'relative'}}
+        style={{ position: "relative" }}
         icon={SearchIcon}
       />
-      <Card shadow={5} style={{position: 'absolute', width: '100%', zIndex: 100}}>
+      <Card
+        shadow={5}
+        style={{ position: "absolute", width: "100%", zIndex: 100 }}
+      >
         {isLoading && (
           <Box padding={3}>
             <Spinner muted />
@@ -70,11 +85,11 @@ export const TmdbSearchField = (props: ObjectInputProps) => {
         {!isLoading && !error && movies?.length && (
           <Grid
             style={{
-              overflowY: 'auto',
-              height: '40vh',
-              marginLeft: '0.5rem',
-              paddingTop: '0.5rem',
-              paddingBottom: '0.5rem',
+              overflowY: "auto",
+              height: "40vh",
+              marginLeft: "0.5rem",
+              paddingTop: "0.5rem",
+              paddingBottom: "0.5rem",
             }}
             gap={2}
           >
@@ -83,17 +98,17 @@ export const TmdbSearchField = (props: ObjectInputProps) => {
                 mode="ghost"
                 key={movie.id}
                 style={{
-                  cursor: 'pointer',
+                  cursor: "pointer",
                 }}
                 onClick={() => {
-                  handleChooseMovie(movie)
+                  handleChooseMovie(movie);
                 }}
               >
                 <Flex>
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
-                    style={{width: 80, height: 120, marginRight: 10}}
+                    style={{ width: 80, height: 120, marginRight: 10 }}
                   />
                   <Stack space={3}>
                     <Text size={2} weight="bold" textOverflow="ellipsis">
@@ -108,9 +123,9 @@ export const TmdbSearchField = (props: ObjectInputProps) => {
         )}
       </Card>
     </Box>
-  )
-}
+  );
+};
 
 function getDirectorsString(directors: TmdbCrewMember[]): string {
-  return directors.map((director) => director.name).join(', ')
+  return directors.map((director) => director.name).join(", ");
 }
