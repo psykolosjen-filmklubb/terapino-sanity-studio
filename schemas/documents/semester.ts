@@ -22,7 +22,7 @@ export default defineType({
       name: 'color',
       title: 'Semester-farge',
       type: 'color',
-      description: 'Fargekoden til semesteret, f.eks. #ff0000 for rød',
+      description: 'Fargen semesteret vises med i arkivet',
     }),
     defineField({
       name: 'screenings',
