@@ -26,9 +26,11 @@
     "swr": "2.3.6"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^3.0.1",
+    "@eslint/eslintrc": "3.3.1",
+    "@eslint/js": "9.35.0",
+    "@sanity/eslint-config-studio": "5.0.2",
     "@types/react": "19.1.13",
-    "eslint": "^8.6.0",
+    "eslint": "9.35.0",
     "prettier": "^3.0.2",
     "typescript": "^5.1.6"
   },
