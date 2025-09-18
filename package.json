@@ -23,7 +23,7 @@
     "react-is": "19.1.1",
     "sanity": "4.9.0",
     "styled-components": "6.1.19",
-    "swr": "^2.3.0"
+    "swr": "2.3.6"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^3.0.1",
