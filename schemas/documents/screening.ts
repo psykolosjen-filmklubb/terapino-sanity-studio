@@ -27,7 +27,7 @@ export default defineType({
     }),
     defineField({
       name: "slug",
-      title: "Slug",
+      title: "URL",
       type: "slug",
       description:
         'Dette blir URL-en til visningen, og må derfor være unik. Du kan trykke på "Generate" for å lage en basert på dato og tittel.',

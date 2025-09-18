@@ -14,8 +14,10 @@ export default defineType({
     }),
     defineField({
       name: "slug",
-      title: "Slug",
+      title: "URL",
       type: "slug",
+      description:
+        'Dette blir URL-en til anmeldelsen, og må derfor være unik. Du kan trykke på "Generate" for å lage en basert på tittel.',
       options: {
         source: "review_title",
         maxLength: 96,
