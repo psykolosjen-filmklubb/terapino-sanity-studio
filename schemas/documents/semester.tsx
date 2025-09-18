@@ -49,4 +49,31 @@ export default defineType({
       by: [{ field: "start_date", direction: "asc" }],
     },
   ],
+  preview: {
+    select: {
+      title: "semester_name",
+      color: "color",
+    },
+    prepare({ title, color }) {
+      console.log(color);
+      return {
+        title,
+        media: (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              background: color.hex,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "4px",
+            }}
+          >
+            🎬
+          </div>
+        ),
+      };
+    },
+  },
 });
