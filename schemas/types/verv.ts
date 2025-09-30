@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { monthYearFormatter } from "../../utils/dateFormatters";
 
 export default defineType({
   name: "verv",
@@ -35,9 +36,16 @@ export default defineType({
     },
     prepare(selection) {
       const { role, from, to } = selection;
+
+      const fromDate = new Date(from);
+      const toDate = to ? new Date(to) : null;
+
+      const fromStr = monthYearFormatter.format(fromDate);
+      const toStr = toDate ? monthYearFormatter.format(toDate) : null;
+
       return {
         title: role ?? "Medlem",
-        subtitle: to ? from + " - " + to : "Siden " + from,
+        subtitle: toStr ? fromStr + " - " + toStr : "Siden " + fromStr,
       };
     },
   },

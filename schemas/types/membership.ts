@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { monthYearFormatter } from "../../utils/dateFormatters";
 
 export default defineType({
   name: "membership",
@@ -25,8 +26,17 @@ export default defineType({
     },
     prepare(selection) {
       const { from, to } = selection;
+
+      const fromDate = new Date(from);
+      const toDate = to ? new Date(to) : null;
+
+      const fromStr = monthYearFormatter.format(fromDate);
+      const toStr = toDate ? monthYearFormatter.format(toDate) : null;
+
       return {
-        title: to ? "Medlem fra " + from + " til " + to : "Med siden " + from,
+        title: to
+          ? "Medlem fra " + fromStr + " til " + toStr
+          : "Med siden " + fromStr,
       };
     },
   },

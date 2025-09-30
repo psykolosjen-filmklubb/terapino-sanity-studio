@@ -8,3 +8,8 @@ export const pastYearsFormatter = new Intl.DateTimeFormat("nb-NO", {
   month: "long",
   year: "numeric",
 });
+
+export const monthYearFormatter = new Intl.DateTimeFormat("nb-NO", {
+  year: "numeric",
+  month: "long",
+});
