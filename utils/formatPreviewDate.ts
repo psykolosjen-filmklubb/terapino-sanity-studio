@@ -1,13 +1,4 @@
-const currentYearFormatter = new Intl.DateTimeFormat("nb-NO", {
-  day: "numeric",
-  month: "long",
-});
-
-const pastYearsFormatter = new Intl.DateTimeFormat("nb-NO", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
+import { currentYearFormatter, pastYearsFormatter } from "./dateFormatters";
 
 export function formatPreviewDate(inputDate?: string) {
   if (!inputDate) return "Ikke satt dato";
