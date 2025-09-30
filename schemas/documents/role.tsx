@@ -25,4 +25,30 @@ export default defineType({
       by: [{ field: "sort_order", direction: "asc" }],
     },
   ],
+  preview: {
+    select: {
+      title: "name",
+      order: "sort_order",
+    },
+    prepare({ title, order }) {
+      const orderElement = (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {order}
+        </div>
+      );
+
+      return {
+        title: title,
+        media: orderElement,
+      };
+    },
+  },
 });

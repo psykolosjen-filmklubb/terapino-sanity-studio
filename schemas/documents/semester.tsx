@@ -55,24 +55,25 @@ export default defineType({
       color: "color",
     },
     prepare({ title, color }) {
-      console.log(color);
+      const mediaElement = (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            background: color.hex,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "4px",
+          }}
+        >
+          🎬
+        </div>
+      );
+
       return {
         title,
-        media: (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              background: color.hex,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "4px",
-            }}
-          >
-            🎬
-          </div>
-        ),
+        media: mediaElement,
       };
     },
   },
