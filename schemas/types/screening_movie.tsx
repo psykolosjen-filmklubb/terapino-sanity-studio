@@ -4,6 +4,7 @@ import { TitleInput } from "../../components/tmdbSearchField/titleInput";
 import { ReleaseYearInput } from "../../components/tmdbSearchField/releaseYearInput";
 import { DirectorsInput } from "../../components/tmdbSearchField/directorInput";
 import { TmdbIdInput } from "../../components/tmdbSearchField/tmdbIdInput";
+import { CustomMoviePreview } from "../../components/CustomMoviePreview";
 
 export default defineType({
   name: "screening_movie",
@@ -78,4 +79,15 @@ export default defineType({
       ),
     }),
   ],
+  components: {
+    preview: CustomMoviePreview,
+  },
+  preview: {
+    select: {
+      movie_title: "title",
+      release_year: "release_year",
+      directors: "directors",
+      tmdb_id: "tmdb_id",
+    },
+  },
 });
