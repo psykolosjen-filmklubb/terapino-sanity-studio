@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Movie, useTmdbSearch } from "./useTmdbSearch";
+import { Movie, useTmdbSearch } from "../../swr/useTmdbSearch";
 import {
   Box,
   TextInput,

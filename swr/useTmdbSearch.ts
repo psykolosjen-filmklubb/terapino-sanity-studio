@@ -1,5 +1,5 @@
 import useSWRImmutable from "swr/immutable";
-import { fetcher } from "../../swr/fetcher";
+import { fetcher } from "./fetcher";
 
 interface TmdbResponse {
   results: Movie[];
