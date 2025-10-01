@@ -34,5 +34,30 @@ export default defineType({
       type: "array",
       of: [defineArrayMember({ type: "verv" })],
     }),
+    defineField({
+      name: "is_active",
+      title: "Er aktivt medlem?",
+      type: "boolean",
+      initialValue: true,
+      hidden: true,
+    }),
+    defineField({
+      name: "last_membership_date",
+      title: "Siste medlemskapsdato",
+      type: "date",
+      initialValue: new Date().toISOString().split("T")[0],
+      hidden: true,
+    }),
+  ],
+  orderings: [
+    {
+      title: "Medlemskap",
+      name: "memberOrdering",
+      by: [
+        { field: "is_active", direction: "desc" },
+        { field: "last_membership_date", direction: "desc" },
+        { field: "name", direction: "asc" },
+      ],
+    },
   ],
 });
