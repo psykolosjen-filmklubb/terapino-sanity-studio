@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { urlFor } from "../../utils/imageBuilder";
 
 export default defineType({
   name: "member",
@@ -60,4 +61,30 @@ export default defineType({
       ],
     },
   ],
+  preview: {
+    select: {
+      name: "name",
+      image: "image",
+      isActive: "is_active",
+    },
+    prepare({ name, image, isActive }) {
+      let imageUrl = urlFor(image).width(124).height(124).url();
+
+      if (!isActive) {
+        // Apply grayscale filter for inactive members
+        imageUrl += "&cs=b-w";
+      }
+
+      return {
+        title: name,
+        media: (
+          <img
+            src={imageUrl}
+            alt={name}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          />
+        ),
+      };
+    },
+  },
 });
