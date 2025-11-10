@@ -13,6 +13,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "publishing_date",
+      title: "Dato",
+      type: "date",
+      description: "Dato anmeldelsen ble publisert",
+      initialValue: new Date().toISOString().split("T")[0],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "slug",
       title: "URL",
       type: "slug",
