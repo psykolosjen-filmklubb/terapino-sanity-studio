@@ -11,11 +11,14 @@ import screening_movie from "./types/screening_movie";
 import semester from "./documents/semester";
 import settings from "./documents/settings";
 import verv from "./types/verv";
+import movieOfTheWeek from "./documents/movieOfTheWeek";
+import screening_movie_single from "./types/screening_movie_single";
 
 export const schemaTypes = [
   member,
   review,
   screening,
+  movieOfTheWeek,
   semester,
   page_om_oss,
   image_assets,
@@ -24,6 +27,7 @@ export const schemaTypes = [
   membership,
   settings,
   screening_movie,
+  screening_movie_single,
   event,
   event_media,
 ];
