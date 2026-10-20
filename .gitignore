@@ -29,3 +29,5 @@
 *.local
 .gitconfig
 .env
+# Dataset exports (sanity dataset export)
+*.tar.gz

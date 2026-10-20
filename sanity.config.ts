@@ -10,7 +10,7 @@ export default defineConfig({
   title: "Terapino Studio",
 
   projectId: "4s9wdr84",
-  dataset: "production",
+  dataset: process.env.SANITY_STUDIO_DATASET || "production",
 
   plugins: [structureTool(), visionTool(), colorInput()],
 
