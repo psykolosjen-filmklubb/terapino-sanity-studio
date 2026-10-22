@@ -1,5 +1,4 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
-import { formatPreviewDate } from "../../utils/formatPreviewDate";
 import { getISOWeekNumber } from "../../utils/getCurrentWeek";
 
 export default defineType({

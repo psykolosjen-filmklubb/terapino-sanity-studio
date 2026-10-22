@@ -1,21 +1,24 @@
-import { useDocumentOperation } from "sanity";
+import { useDocumentOperation, type DocumentActionComponent } from "sanity";
 
-export function createPublishMemberAction(originalPublishAction: any) {
-  const publishMember = (actionProps: any) => {
-    const { patch } = useDocumentOperation(actionProps.id, actionProps.type);
-    const originalResult = originalPublishAction(actionProps);
+export function createPublishMemberAction(
+  originalPublishAction: DocumentActionComponent,
+): DocumentActionComponent {
+  const PublishMember: DocumentActionComponent = (props) => {
+    const { patch } = useDocumentOperation(props.id, props.type);
+    const original = originalPublishAction(props);
+    if (!original) return original;
 
     return {
-      ...originalResult,
+      ...original,
       onHandle: () => {
-        if (isActiveMember(actionProps.draft.memberships)) {
+        // memberships is a required field, so validation blocks publishing without it.
+        const memberships = props.draft?.memberships as Membership[];
+        if (isActiveMember(memberships)) {
           patch.execute([
             {
               set: {
                 is_active: true,
-                last_membership_date: getMostRecentFromDate(
-                  actionProps.draft.memberships,
-                ),
+                last_membership_date: getMostRecentFromDate(memberships),
               },
             },
           ]);
@@ -24,20 +27,18 @@ export function createPublishMemberAction(originalPublishAction: any) {
             {
               set: {
                 is_active: false,
-                last_membership_date: getLeftDate(
-                  actionProps.draft.memberships,
-                ),
+                last_membership_date: getLeftDate(memberships),
               },
             },
           ]);
         }
 
-        originalResult.onHandle();
+        original.onHandle?.();
       },
     };
   };
-
-  return publishMember;
+  PublishMember.action = originalPublishAction.action;
+  return PublishMember;
 }
 
 function isActiveMember(memberships: Membership[]): boolean {
@@ -49,7 +50,8 @@ function isActiveMember(memberships: Membership[]): boolean {
 }
 
 function getMostRecentFromDate(memberships: Membership[]): string {
-  const mostRecentMembership = memberships.sort(
+  // Sort a copy so the draft's memberships array is not reordered in place.
+  const mostRecentMembership = [...memberships].sort(
     (a: Membership, b: Membership) =>
       new Date(b.from_date).getTime() - new Date(a.from_date).getTime(),
   )[0];
@@ -66,12 +68,12 @@ function getLeftDate(memberships: Membership[]): string {
     .filter((membership: Membership) => membership.to_date)
     .sort(
       (a: Membership, b: Membership) =>
-        // Using !! to assert that to_date is not undefined here, after filtering
-        new Date(b.to_date!!).getTime() - new Date(a.to_date!!).getTime(),
+        // Using ! to assert that to_date is not undefined here, after filtering
+        new Date(b.to_date!).getTime() - new Date(a.to_date!).getTime(),
     )[0];
 
   const leftDate = leftMembership
-    ? leftMembership.to_date!!
+    ? leftMembership.to_date!
     : new Date().toISOString().split("T")[0]; // Fallback to today if no memberships found
   return leftDate;
 }
