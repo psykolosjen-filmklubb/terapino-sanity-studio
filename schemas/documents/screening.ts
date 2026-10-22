@@ -1,10 +1,16 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { formatPreviewDate } from "../../utils/formatPreviewDate";
+import {
+  SemesterReferenceInput,
+  UntitledField,
+} from "../../components/SemesterReferenceInput";
 
 export default defineType({
   name: "screening",
   title: "Visninger",
   type: "document",
+  // Groups the automatic toggle with the semester under one heading.
+  fieldsets: [{ name: "semester", title: "Semester" }],
   fields: [
     defineField({
       name: "movies",
@@ -19,6 +25,27 @@ export default defineType({
       title: "Visningsdato",
       type: "date",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "auto_semester",
+      title: "Automatisk semester",
+      type: "boolean",
+      fieldset: "semester",
+      description:
+        "Slå av for å velge semester selv, eller for å holde visningen utenfor semesterarkivet.",
+      initialValue: true,
+    }),
+    defineField({
+      name: "semester",
+      title: "Semester",
+      type: "reference",
+      fieldset: "semester",
+      to: [{ type: "semester" }],
+      options: { disableNew: true },
+      // A missing value means automatic: older drafts predate this field.
+      readOnly: ({ document }) => document?.auto_semester !== false,
+      // The fieldset already shows the "Semester" heading.
+      components: { input: SemesterReferenceInput, field: UntitledField },
     }),
     defineField({
       name: "tickets_url",

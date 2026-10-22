@@ -5,6 +5,8 @@
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "check": "tsc --noEmit --incremental false",
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",

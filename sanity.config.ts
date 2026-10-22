@@ -4,6 +4,9 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
 import { colorInput } from "@sanity/color-input";
 import { createPublishMemberAction } from "./actions/publish-member-action";
+import { createPublishScreeningAction } from "./actions/publish-screening-action";
+import { createPublishSemesterAction } from "./actions/publish-semester-action";
+import { SemesterScreeningsView } from "./components/SemesterScreeningsView";
 
 export default defineConfig({
   name: "default",
@@ -12,7 +15,19 @@ export default defineConfig({
   projectId: "4s9wdr84",
   dataset: process.env.SANITY_STUDIO_DATASET || "production",
 
-  plugins: [structureTool(), visionTool(), colorInput()],
+  plugins: [
+    structureTool({
+      defaultDocumentNode: (S, { schemaType }) =>
+        schemaType === "semester"
+          ? S.document().views([
+              S.view.form(),
+              S.view.component(SemesterScreeningsView).title("Visninger"),
+            ])
+          : S.document(),
+    }),
+    visionTool(),
+    colorInput(),
+  ],
 
   schema: {
     types: schemaTypes,
@@ -21,6 +36,18 @@ export default defineConfig({
   document: {
     actions: (prev, context) =>
       prev.map((originalAction) => {
+        if (
+          originalAction.action === "publish" &&
+          context.schemaType === "screening"
+        ) {
+          return createPublishScreeningAction(originalAction);
+        }
+        if (
+          originalAction.action === "publish" &&
+          context.schemaType === "semester"
+        ) {
+          return createPublishSemesterAction(originalAction);
+        }
         if (
           originalAction.action === "publish" &&
           context.schemaType === "member"
