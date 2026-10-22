@@ -34,7 +34,7 @@ and an error is shown.
 
 ## Local verification
 
-Use Node 22.12+ and npm:
+Use Node 22.13+ and npm:
 
 ```sh
 npm test
