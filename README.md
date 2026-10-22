@@ -32,31 +32,6 @@ concurrent publishes do not create duplicates. If it fails, or a matching
 semester exists only as an unpublished draft, the screening is not published
 and an error is shown.
 
-## Migrating from semester screening lists
-
-Semesters used to list their screenings in `semester.screenings`. Two
-migrations in `migrations/` move to screening references. Both run as a dry
-run unless `--no-dry-run` is passed.
-
-1. `semester-references` sets `semester_year` and `semester_season` on each
-   published semester from its name, which must be **Vår YYYY** or
-   **Høst YYYY**. Each published screening gets **Automatisk semester** and a
-   reference to the semester its date gives. It first checks that every
-   screening in an old list is listed in exactly that semester, and stops
-   without writing anything if not. Drafts are left alone; publishing them in
-   the new Studio sets their semester. It skips migrated documents, so it can
-   be re-run.
-
-   ```sh
-   npx sanity migration run semester-references --project 4s9wdr84 --dataset development
-   ```
-
-2. Deploy the website archive change, then this Studio (`npm run deploy`). Run
-   step 1 again to pick up screenings published in the old Studio meanwhile.
-3. `remove-legacy-semester-fields` removes the old lists and start dates.
-   Afterwards, delete the hidden `screenings` and `start_date` fields from
-   `schemas/documents/semester.tsx`.
-
 ## Local verification
 
 Use Node 22.12+ and npm:

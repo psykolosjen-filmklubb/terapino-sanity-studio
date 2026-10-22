@@ -23,7 +23,8 @@ export function createPublishScreeningAction(
     const { patch } = useDocumentOperation(props.id, props.type);
     const sync = useSyncState(props.id, props.type);
     const validation = useValidationStatus(props.id, props.type);
-    // A missing value means automatic: older drafts predate the field.
+    // Treat a missing value as automatic, the default, so a screening is never
+    // silently left without a semester.
     const auto = props.draft?.auto_semester !== false;
     // Do not enter Sanity's deferred publish queue in automatic mode: that
     // queue could publish a later date without setting its semester.

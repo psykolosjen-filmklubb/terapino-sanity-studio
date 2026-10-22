@@ -42,7 +42,7 @@ export default defineType({
       fieldset: "semester",
       to: [{ type: "semester" }],
       options: { disableNew: true },
-      // A missing value means automatic: older drafts predate this field.
+      // A missing value means automatic, the default.
       readOnly: ({ document }) => document?.auto_semester !== false,
       // The fieldset already shows the "Semester" heading.
       components: { input: SemesterReferenceInput, field: UntitledField },

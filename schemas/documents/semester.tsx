@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 import {
   semesterName,
   validateSemester,
@@ -66,22 +66,6 @@ export default defineType({
       title: "Semester-farge",
       type: "color",
       description: "Fargen semesteret vises med i arkivet",
-    }),
-    // Legacy fields, hidden until the remove-legacy-semester-fields migration
-    // has removed their data. Screenings now reference their semester, and
-    // year and season give the sort order.
-    defineField({
-      name: "screenings",
-      type: "array",
-      of: [defineArrayMember({ type: "reference", to: { type: "screening" } })],
-      hidden: true,
-      readOnly: true,
-    }),
-    defineField({
-      name: "start_date",
-      type: "date",
-      hidden: true,
-      readOnly: true,
     }),
   ],
   orderings: [
