@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { getISOWeekNumber } from "../../utils/getCurrentWeek";
+import { TmdbPosterMedia } from "../../components/TmdbPosterMedia";
 
 export default defineType({
   name: "movieOfTheWeek",
@@ -66,6 +67,16 @@ export default defineType({
   preview: {
     select: {
       title: "movie.title",
+      tmdbId: "movie.tmdb_id",
+      weekNumber: "weekNumber",
+      year: "year",
+    },
+    prepare({ title, tmdbId, weekNumber, year }) {
+      return {
+        title,
+        subtitle: weekNumber && year ? `Uke ${weekNumber}, ${year}` : undefined,
+        media: <TmdbPosterMedia tmdbId={tmdbId} />,
+      };
     },
   },
 });

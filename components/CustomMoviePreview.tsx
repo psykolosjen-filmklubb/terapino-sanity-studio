@@ -4,7 +4,8 @@ import { useTmdbPoster } from "../swr/useTmdbPoster";
 import { ErrorOutlineIcon } from "@sanity/icons/ErrorOutline";
 import { VideoIcon } from "@sanity/icons/Video";
 
-type Props = PreviewProps & {
+// Partial so MovieSingleInput can render it outside a Sanity preview.
+type Props = Partial<PreviewProps> & {
   tmdb_id?: string;
   movie_title?: string;
   release_year?: number;

@@ -1,15 +1,21 @@
 import { defineField, defineType } from "sanity";
-import { TitleInputSingle } from "../../components/tmdbSearchFieldSingle/titleInputSingle";
 import { CustomMoviePreview } from "../../components/CustomMoviePreview";
 import { TmdbSearchFieldSingle } from "../../components/tmdbSearchFieldSingle/tmdbSearchFieldSingle";
-import { ReleaseYearInputSingle } from "../../components/tmdbSearchFieldSingle/releaseYearInputSingle";
-import { DirectorsInputSingle } from "../../components/tmdbSearchFieldSingle/directorInputSingle";
-import { TmdbIdInputSingle } from "../../components/tmdbSearchFieldSingle/tmdbIdInputSingle";
+import { MovieSingleInput } from "../../components/MovieSingleInput";
 
 export default defineType({
   name: "screening_movie_single",
   title: "Film",
   type: "object",
+  // MovieSingleInput fills these from the search, so they stay folded away
+  // unless someone wants to edit them by hand.
+  fieldsets: [
+    {
+      name: "details",
+      title: "Rediger detaljer manuelt",
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: "tmdb_data",
@@ -43,33 +49,25 @@ export default defineType({
       name: "title",
       title: "Tittel",
       type: "string",
-      components: {
-        input: TitleInputSingle,
-      },
+      fieldset: "details",
     }),
     defineField({
       name: "release_year",
       title: "Utgivelsesår",
       type: "number",
-      components: {
-        input: ReleaseYearInputSingle,
-      },
+      fieldset: "details",
     }),
     defineField({
       name: "directors",
       type: "string",
       title: "Regissør(er)",
-      components: {
-        input: DirectorsInputSingle,
-      },
+      fieldset: "details",
     }),
     defineField({
       name: "tmdb_id",
       type: "number",
       title: "TMDB ID",
-      components: {
-        input: TmdbIdInputSingle,
-      },
+      fieldset: "details",
       description: (
         <span>
           ID-en til filmen på{" "}
@@ -80,6 +78,7 @@ export default defineType({
     }),
   ],
   components: {
+    input: MovieSingleInput,
     preview: CustomMoviePreview,
   },
   preview: {
