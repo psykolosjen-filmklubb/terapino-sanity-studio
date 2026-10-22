@@ -5,6 +5,16 @@ import {
   type SemesterDocument,
 } from "../../utils/semester";
 
+// "fall" sorts before "spring", so ascending season is latest first.
+export const SEMESTERS_NEWEST_FIRST = {
+  title: "Nyeste først",
+  name: "newest_first",
+  by: [
+    { field: "semester_year", direction: "desc" as const },
+    { field: "semester_season", direction: "asc" as const },
+  ],
+};
+
 export default defineType({
   name: "semester",
   title: "Semesterprogram",
@@ -69,15 +79,7 @@ export default defineType({
     }),
   ],
   orderings: [
-    // "fall" sorts before "spring", so ascending season is latest first.
-    {
-      title: "Nyeste først",
-      name: "newest_first",
-      by: [
-        { field: "semester_year", direction: "desc" },
-        { field: "semester_season", direction: "asc" },
-      ],
-    },
+    SEMESTERS_NEWEST_FIRST,
     {
       title: "Eldste først",
       name: "oldest_first",

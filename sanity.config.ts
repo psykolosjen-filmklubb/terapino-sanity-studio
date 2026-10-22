@@ -7,6 +7,7 @@ import { createPublishMemberAction } from "./actions/publish-member-action";
 import { createPublishScreeningAction } from "./actions/publish-screening-action";
 import { createPublishSemesterAction } from "./actions/publish-semester-action";
 import { SemesterScreeningsView } from "./components/SemesterScreeningsView";
+import { SEMESTERS_NEWEST_FIRST } from "./schemas/documents/semester";
 
 export default defineConfig({
   name: "default",
@@ -17,6 +18,21 @@ export default defineConfig({
 
   plugins: [
     structureTool({
+      // The default list, except that semesters are sorted newest first.
+      structure: (S) =>
+        S.list()
+          .title("Content")
+          .items(
+            S.documentTypeListItems().map((item) =>
+              item.getId() === "semester"
+                ? item.child(
+                    S.documentTypeList("semester").defaultOrdering(
+                      SEMESTERS_NEWEST_FIRST.by,
+                    ),
+                  )
+                : item,
+            ),
+          ),
       defaultDocumentNode: (S, { schemaType }) =>
         schemaType === "semester"
           ? S.document().views([
