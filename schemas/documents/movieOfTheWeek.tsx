@@ -2,6 +2,15 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 import { getISOWeekNumber } from "../../utils/getCurrentWeek";
 import { TmdbPosterMedia } from "../../components/TmdbPosterMedia";
 
+export const MOVIES_OF_THE_WEEK_NEWEST_FIRST = {
+  title: "Nyeste først",
+  name: "newest_first",
+  by: [
+    { field: "year", direction: "desc" as const },
+    { field: "weekNumber", direction: "desc" as const },
+  ],
+};
+
 export default defineType({
   name: "movieOfTheWeek",
   title: "Ukens film",
@@ -63,6 +72,17 @@ export default defineType({
       to: { type: "member" },
       validation: (rule) => rule.required(),
     }),
+  ],
+  orderings: [
+    MOVIES_OF_THE_WEEK_NEWEST_FIRST,
+    {
+      title: "Eldste først",
+      name: "oldest_first",
+      by: [
+        { field: "year", direction: "asc" },
+        { field: "weekNumber", direction: "asc" },
+      ],
+    },
   ],
   preview: {
     select: {

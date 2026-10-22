@@ -8,6 +8,13 @@ import { createPublishScreeningAction } from "./actions/publish-screening-action
 import { createPublishSemesterAction } from "./actions/publish-semester-action";
 import { SemesterScreeningsView } from "./components/SemesterScreeningsView";
 import { SEMESTERS_NEWEST_FIRST } from "./schemas/documents/semester";
+import { MOVIES_OF_THE_WEEK_NEWEST_FIRST } from "./schemas/documents/movieOfTheWeek";
+
+// Document types whose list is sorted by something other than last edited.
+const DEFAULT_ORDERINGS: Record<string, typeof SEMESTERS_NEWEST_FIRST.by> = {
+  semester: SEMESTERS_NEWEST_FIRST.by,
+  movieOfTheWeek: MOVIES_OF_THE_WEEK_NEWEST_FIRST.by,
+};
 
 export default defineConfig({
   name: "default",
@@ -18,20 +25,18 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      // The default list, except that semesters are sorted newest first.
+      // The default list, except that some types are sorted newest first.
       structure: (S) =>
         S.list()
           .title("Content")
           .items(
-            S.documentTypeListItems().map((item) =>
-              item.getId() === "semester"
-                ? item.child(
-                    S.documentTypeList("semester").defaultOrdering(
-                      SEMESTERS_NEWEST_FIRST.by,
-                    ),
-                  )
-                : item,
-            ),
+            S.documentTypeListItems().map((item) => {
+              const id = item.getId();
+              const ordering = id && DEFAULT_ORDERINGS[id];
+              return id && ordering
+                ? item.child(S.documentTypeList(id).defaultOrdering(ordering))
+                : item;
+            }),
           ),
       defaultDocumentNode: (S, { schemaType }) =>
         schemaType === "semester"
