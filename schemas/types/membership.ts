@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { monthYearFormatter } from "../../utils/dateFormatters";
-import { CalendarIcon } from "@sanity/icons";
+import { CalendarIcon } from "@sanity/icons/Calendar";
 
 export default defineType({
   name: "membership",

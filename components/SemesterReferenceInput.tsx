@@ -59,7 +59,7 @@ export function SemesterReferenceInput(props: ReferenceInputProps) {
   }
 
   return (
-    <Stack space={3}>
+    <Stack gap={3}>
       {message && (
         <Card padding={3} radius={2} tone={problem ? "critical" : "primary"}>
           <Text size={1}>{message}</Text>

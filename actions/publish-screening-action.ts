@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
 import {
+  getDraftId,
   useClient,
   useDocumentOperation,
   useSyncState,
   useValidationStatus,
   type DocumentActionComponent,
 } from "sanity";
-import { useToast } from "@sanity/ui";
+import { useToast } from "@sanity/ui/toast";
 import { mutate } from "swr";
 import { ensureSemester, SEMESTERS_SWR_KEY } from "../utils/semester";
 
@@ -22,7 +23,13 @@ export function createPublishScreeningAction(
     const original = originalPublishAction(props);
     const { patch } = useDocumentOperation(props.id, props.type);
     const sync = useSyncState(props.id, props.type);
-    const validation = useValidationStatus(props.id, props.type);
+    // Validate the draft: a published ID validates the published document,
+    // whose revision never matches the draft's.
+    const validation = useValidationStatus(
+      getDraftId(props.id),
+      props.type,
+      true,
+    );
     // Treat a missing value as automatic, the default, so a screening is never
     // silently left without a semester.
     const auto = props.draft?.auto_semester !== false;

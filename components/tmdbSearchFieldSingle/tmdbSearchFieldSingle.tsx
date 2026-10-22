@@ -12,7 +12,7 @@ import {
   Card,
 } from "@sanity/ui";
 import { ObjectInputProps, set } from "sanity";
-import { SearchIcon } from "@sanity/icons";
+import { SearchIcon } from "@sanity/icons/Search";
 import {
   fetchMovieDirectorsSingle,
   TmdbCrewMember,
@@ -112,7 +112,7 @@ export const TmdbSearchFieldSingle = (props: ObjectInputProps) => {
                     alt={movie.title}
                     style={{ width: 80, height: 120, marginRight: 10 }}
                   />
-                  <Stack space={3}>
+                  <Stack gap={3}>
                     <Text size={2} weight="bold" textOverflow="ellipsis">
                       {movie.title}
                     </Text>

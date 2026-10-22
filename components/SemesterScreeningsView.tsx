@@ -24,7 +24,7 @@ export function SemesterScreeningsView({ documentId }: { documentId: string }) {
   );
 
   return (
-    <Stack space={3} padding={4}>
+    <Stack gap={3} padding={4}>
       <Text size={1} muted>
         Listen inkluderer utkast. Endre semester eller programmer på den enkelte
         visningen.
@@ -40,7 +40,7 @@ export function SemesterScreeningsView({ documentId }: { documentId: string }) {
       ) : (
         data.map((screening) => (
           <Card key={screening._id} padding={3} border radius={2}>
-            <Stack space={2}>
+            <Stack gap={2}>
               <IntentLink
                 intent="edit"
                 params={{ id: screening._id, type: "screening" }}

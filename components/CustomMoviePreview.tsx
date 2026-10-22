@@ -1,8 +1,8 @@
 import { PreviewProps } from "sanity";
 import { Card, Flex, Spinner, Stack, Text } from "@sanity/ui";
 import { useTmdbPoster } from "../swr/useTmdbPoster";
-import { ErrorOutlineIcon } from "@sanity/icons";
-import { VideoIcon } from "@sanity/icons";
+import { ErrorOutlineIcon } from "@sanity/icons/ErrorOutline";
+import { VideoIcon } from "@sanity/icons/Video";
 
 type Props = PreviewProps & {
   tmdb_id?: string;
@@ -60,7 +60,7 @@ export const CustomMoviePreview = (props: Props) => {
       )}
 
       {/* Title and subtitle */}
-      <Stack space={2}>
+      <Stack gap={2}>
         <Text size={1} weight="medium">
           {title + releaseYearPostfix}
         </Text>

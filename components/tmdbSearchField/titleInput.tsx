@@ -1,30 +1,24 @@
 import { useEffect, useRef } from "react";
 import { useFormValue, set, StringInputProps, KeyedSegment } from "sanity";
 
-/**
- * Value used to indicate that the TMDB title value has not been initialized yet.
- * This value is used to distinguish the initial state from subsequent updates.
- */
-const TMDB_TITLE_UNINITIALIZED = "uninitialized";
-
 export const TitleInput = (props: StringInputProps) => {
   const { onChange, value } = props;
 
-  const previousTmdbTitle = useRef<string>(TMDB_TITLE_UNINITIALIZED);
   const tmdbTitle = useFormValue([
     "movies",
     { _key: (props.path[1] as KeyedSegment)._key },
     "tmdb_data",
     "title",
   ]) as string;
+  // Start from the loaded value so opening a document does not overwrite the
+  // field, even when React strict mode runs the effect twice on mount.
+  const previousTmdbTitle = useRef(tmdbTitle);
 
   useEffect(() => {
-    if (previousTmdbTitle.current === TMDB_TITLE_UNINITIALIZED) {
-      // This is the first time the component is rendered, so we don't want to
-      // trigger an update
-      previousTmdbTitle.current = tmdbTitle;
+    if (previousTmdbTitle.current === tmdbTitle) {
       return;
     }
+    previousTmdbTitle.current = tmdbTitle;
 
     if (tmdbTitle && tmdbTitle !== value) {
       onChange(set(tmdbTitle));
