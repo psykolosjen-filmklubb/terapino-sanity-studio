@@ -96,7 +96,7 @@ export default defineType({
       return {
         title,
         subtitle: weekNumber && year ? `Uke ${weekNumber}, ${year}` : undefined,
-        media: poster ?? <TmdbPosterMedia tmdbId={tmdbId} />,
+        media: poster?.asset ? poster : <TmdbPosterMedia tmdbId={tmdbId} />,
       };
     },
   },
