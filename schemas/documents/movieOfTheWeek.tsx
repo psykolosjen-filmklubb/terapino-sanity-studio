@@ -88,14 +88,15 @@ export default defineType({
     select: {
       title: "movie.title",
       tmdbId: "movie.tmdb_id",
+      poster: "movie.poster",
       weekNumber: "weekNumber",
       year: "year",
     },
-    prepare({ title, tmdbId, weekNumber, year }) {
+    prepare({ title, tmdbId, poster, weekNumber, year }) {
       return {
         title,
         subtitle: weekNumber && year ? `Uke ${weekNumber}, ${year}` : undefined,
-        media: <TmdbPosterMedia tmdbId={tmdbId} />,
+        media: poster ?? <TmdbPosterMedia tmdbId={tmdbId} />,
       };
     },
   },

@@ -76,6 +76,17 @@ export default defineType({
         </span>
       ),
     }),
+    defineField({
+      name: "poster",
+      title: "Egen plakat",
+      type: "image",
+      fieldset: "details",
+      description:
+        "Brukes i stedet for plakaten fra TMDB, f.eks. hvis du anbefaler en episode av en serie, eller bare vil ha en annen plakat.",
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
   components: {
     input: MovieSingleInput,
@@ -87,6 +98,7 @@ export default defineType({
       release_year: "release_year",
       directors: "directors",
       tmdb_id: "tmdb_id",
+      poster: "poster",
     },
   },
 });

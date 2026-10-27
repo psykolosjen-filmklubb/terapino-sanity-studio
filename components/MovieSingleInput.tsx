@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Card, Stack } from "@sanity/ui";
-import { ObjectInputProps, set } from "sanity";
+import { Image, ObjectInputProps, set } from "sanity";
 import { CustomMoviePreview } from "./CustomMoviePreview";
 
 type MovieValue = {
@@ -8,7 +8,8 @@ type MovieValue = {
   release_year?: number;
   directors?: string;
   tmdb_id?: number;
-  tmdb_data?: Omit<MovieValue, "tmdb_data">;
+  poster?: Image;
+  tmdb_data?: Omit<MovieValue, "tmdb_data" | "poster">;
 };
 
 const SYNCED_FIELDS = [
@@ -60,13 +61,14 @@ export const MovieSingleInput = (props: ObjectInputProps) => {
         members: props.members.filter(isSearch),
       })}
 
-      {(value?.title || value?.tmdb_id) && (
+      {(value?.title || value?.tmdb_id || value?.poster?.asset) && (
         <Card border radius={2} padding={3}>
           <CustomMoviePreview
             movie_title={value.title}
             release_year={value.release_year}
             directors={value.directors}
             tmdb_id={value.tmdb_id ? String(value.tmdb_id) : undefined}
+            poster={value.poster}
           />
         </Card>
       )}
